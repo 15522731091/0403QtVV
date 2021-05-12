@@ -147,6 +147,8 @@ double csTest1::get_speed(cv::Mat& frame, vector<Point>& contour, Point2f center
 void csTest2::Init(Mat Img)
 {
 	cvtColor(Img, BeforeFrame, COLOR_RGB2GRAY);
+	BeforeFrame.copyTo(OrgFrame);
+	BeforeFrame.copyTo(LastFrame);
 	detector = cv::xfeatures2d::SURF::create(400);
 }
 
@@ -161,7 +163,7 @@ Mat csTest2::getSpeed(Mat Img)
 	s7Dilate();
 	s8Erode();
 	s9DrawCar();
-
+	OrgFrame.copyTo(LastFrame);
 	return FrameBackup;
 }
 
@@ -185,6 +187,7 @@ void csTest2::s3GaussianBlur()
 void csTest2::s4Gary()
 {
 	cvtColor(Frame, Frame, COLOR_RGB2GRAY);
+	Frame.copyTo(OrgFrame);
 }
 
 void csTest2::s5Difference()
@@ -218,9 +221,9 @@ void csTest2::s9DrawCar()
 	std::vector<KeyPoint> KpCar, KpSour;
 	Mat DpCar, DpSour,Car,Sour;
 	// 加载主画面
-	FrameBackup.copyTo(Sour);
-	detector->detectAndCompute(Sour, noArray(), KpSour, DpSour);
-	//matchTemplate
+	LastFrame.copyTo(Sour);
+
+
 
 	vector<vector<Point> > contours;
 	findContours(Frame, contours, RETR_EXTERNAL, CHAIN_APPROX_NONE);
@@ -244,10 +247,10 @@ void csTest2::s9DrawCar()
 		}
 		Ptr<DescriptorMatcher> matcherTmp = DescriptorMatcher::create(DescriptorMatcher::FLANNBASED);
 
-		std::vector< std::vector<DMatch> > KNN_mTmp;
-		std::vector<DMatch> good_matchesTmp;
-
-		matcherTmp->knnMatch(DpCar, DpSour, KNN_mTmp, 2);
+		double minVal, maxVal;
+		cv::Point minLoc, maxLoc;
+		//寻找最佳匹配位置
+		cv::minMaxLoc(tmp, &minVal, &maxVal, &minLoc, &maxLoc);
 
 		double sumx = 0;
 		double sumy = 0;
@@ -271,26 +274,37 @@ void csTest2::s9DrawCar()
 		sumy = sumy / KNN_mTmp.size();
 
 		Mat img_matches, imgmap, imgminmap;
-		double dis = sqrt(sumx* sumx + sumy * sumy);
+		double dis = sqrt(sumx * sumx + sumy * sumy);
 
-		drawMatches(Car, KpCar, Sour, KpSour, good_matchesTmp, img_matches, Scalar::all(-1), Scalar::all(-1), std::vector<char>(), DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS);
-		
 		int CarSpeed = 0;
 		CarSpeed = dis * scalce - (boundRect[i].y - 50.0) / 5.0;
-		// 根据面积判断车型
-		if (Car.cols * Car.rows>4500)
+
+		if (maxVal > 0.8)
 		{
-			CarClass = "Large Car";
+			// 根据面积判断车型
+			if (Car.cols * Car.rows > 4500)
+			{
+				CarClass = "Large Car";
+			}
+			else
+			{
+				CarClass = "Compact Car";
+			}
+			// 在图上写上车型
+			putText(FrameBackup, CarClass, Point(boundRect[i].x, boundRect[i].y + 20), 1, 1, Scalar(0, 255, 0), 2);
+			// 在图上写车速
+			putText(FrameBackup, to_string((int)CarSpeed), Point(boundRect[i].x, boundRect[i].y), 1, 1, Scalar(0, 255, 0), 1);
+			// 将车车框出来
+			rectangle(FrameBackup, Rect(boundRect[i].x, boundRect[i].y, boundRect[i].width, boundRect[i].height), Scalar(0, 255, 0), 1);
 		}
 		else
 		{
-			CarClass = "Compact Car";
+			// 标记为不准确
+			putText(FrameBackup, "Inaccurate", Point(boundRect[i].x, boundRect[i].y + 20), 1, 1, Scalar(0, 255, 0), 2);
+			// 在图上写车速
+			putText(FrameBackup, to_string((int)CarSpeed), Point(boundRect[i].x, boundRect[i].y), 1, 1, Scalar(0, 255, 0), 1);
+			// 将车车框出来
+			rectangle(FrameBackup, Rect(boundRect[i].x, boundRect[i].y, boundRect[i].width, boundRect[i].height), Scalar(0, 255, 0), 1);
 		}
-		// 在图上写上车型
-		putText(FrameBackup, CarClass, Point(boundRect[i].x, boundRect[i].y+20), 1, 1, Scalar(0, 255, 0), 2);
-		// 在图上写车速
-		putText(FrameBackup, to_string((int)CarSpeed), Point(boundRect[i].x, boundRect[i].y), 1, 1, Scalar(0, 255, 0), 1);
-		// 将车车框出来
-		rectangle(FrameBackup, Rect(boundRect[i].x , boundRect[i].y, boundRect[i].width, boundRect[i].height), Scalar(0, 255, 0), 1);
 	}
 }

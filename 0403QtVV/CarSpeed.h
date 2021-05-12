@@ -61,6 +61,8 @@ class csTest2
 	Mat Frame;
 	Mat FrameBackup;
 	Mat BeforeFrame;
+	Mat LastFrame;
+	Mat OrgFrame;
 
 	Ptr<cv::xfeatures2d::SURF> detector;
 
