@@ -228,6 +228,7 @@ void csTest2::s9DrawCar()
 
 	vector<vector<Point> > contours;
 	findContours(Frame, contours, RETR_EXTERNAL, CHAIN_APPROX_NONE);
+
 	vector<Rect> boundRect(contours.size());
 	for (int i = 0; i < contours.size(); i++)
 	{
