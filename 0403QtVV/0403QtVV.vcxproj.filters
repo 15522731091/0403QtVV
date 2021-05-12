@@ -4,15 +4,6 @@
     <ClCompile Include="VVideo.cpp" />
     <ClCompile Include="QtVV.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="QtWidgetsClassAbout.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="QtWidgetsSettingClass.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="QtWidgetsConConnectCarmeClass.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CarSpeed.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -27,37 +18,13 @@
     <Xml Include="D:\opencv\OpenCV4.5.0\opencv\sources\data\haarcascades\haarcascade_frontalface_alt2.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="assets/logo_store.png" />
-    <Image Include="assets/logo_620x300.png" />
-    <Image Include="assets/logo_150x150.png" />
-    <Image Include="assets/logo_44x44.png" />
-  </ItemGroup>
-  <ItemGroup>
     <QtMoc Include="QtVV.h" />
-    <QtMoc Include="QtWidgetsClassAbout.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="QtWidgetsSettingClass.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="QtWidgetsConConnectCarmeClass.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="QtVV.qrc" />
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="QtVV.ui" />
-    <QtUic Include="QtWidgetsClassAbout.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="QtWidgetsSettingClass.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="QtWidgetsConConnectCarmeClass.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest" />

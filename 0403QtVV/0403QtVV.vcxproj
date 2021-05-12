@@ -111,9 +111,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CarSpeed.cpp" />
-    <ClCompile Include="QtWidgetsClassAbout.cpp" />
-    <ClCompile Include="QtWidgetsConConnectCarmeClass.cpp" />
-    <ClCompile Include="QtWidgetsSettingClass.cpp" />
     <ClCompile Include="VVideo.cpp" />
     <QtRcc Include="QtVV.qrc" />
     <QtUic Include="QtVV.ui" />
@@ -123,27 +120,9 @@
     <AppxManifest Include="Package.appxmanifest">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">true</ExcludedFromBuild>
     </AppxManifest>
-    <Image Include="assets/logo_store.png">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">true</ExcludedFromBuild>
-    </Image>
-    <Image Include="assets/logo_620x300.png">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">true</ExcludedFromBuild>
-    </Image>
-    <Image Include="assets/logo_150x150.png">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">true</ExcludedFromBuild>
-    </Image>
-    <Image Include="assets/logo_44x44.png">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">true</ExcludedFromBuild>
-    </Image>
-    <QtUic Include="QtWidgetsClassAbout.ui" />
-    <QtUic Include="QtWidgetsConConnectCarmeClass.ui" />
-    <QtUic Include="QtWidgetsSettingClass.ui" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CarSpeed.h" />
-    <QtMoc Include="QtWidgetsClassAbout.h" />
-    <QtMoc Include="QtWidgetsSettingClass.h" />
-    <QtMoc Include="QtWidgetsConConnectCarmeClass.h" />
     <ClInclude Include="VVideo.h" />
   </ItemGroup>
   <ItemGroup>

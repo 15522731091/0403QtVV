@@ -4,7 +4,6 @@ void CarSpeed::Init(Mat Img)
 {
 	if (!isInit)
 	{
-		//cs1.Init(Img);
 		cs2.Init(Img);
 		isInit = true;
 	}
@@ -12,11 +11,8 @@ void CarSpeed::Init(Mat Img)
 
 Mat CarSpeed::getSpeed(Mat Img)
 {
-	//return cs1.getSpeed(Img);
 	return cs2.getSpeed(Img);
 }
-
-
 
 void csTest1::Init(Mat Img)
 {
@@ -234,10 +230,6 @@ void csTest2::s9DrawCar()
 	{
 		boundRect[i] = boundingRect(contours[i]);
 
-		//if (boundRect[i].width < 15 || boundRect[i].height < 15)
-		//{
-		//	continue;
-		//}
 		//获取当前画面某一车辆画面
 		Car = FrameBackup(boundRect[i]);
 		//resize(Car, Car, Size(0, 0), 2, 2);

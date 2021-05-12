@@ -8,9 +8,6 @@
 #include <QDir>
 
 #include "VVideo.h"
-#include "QtWidgetsClassAbout.h"
-#include "QtWidgetsConConnectCarmeClass.h"
-#include "QtWidgetsSettingClass.h"
 
 class QtVV : public QMainWindow
 {
@@ -24,21 +21,12 @@ private:
 
 	VVideo vv;
 
-	int Fps = 41;//ms
+	int Fps = 16;//ms
 	QTimer *LoopTimer;
-	
-	QtWidgetsClassAbout *widgetAbout = nullptr;
-	QtWidgetsConConnectCarmeClass *widgetConnect = nullptr;
-	QtWidgetsSettingClass *widgetSetting = nullptr;
+
 
 private slots:
 	void mainloop();
-	void reSave();
-	void About();
-	void Connect();
-	void getConnect(int number);
-	void Setting();
-	void getSetting(string path);
 
 
 	void upVVideo();

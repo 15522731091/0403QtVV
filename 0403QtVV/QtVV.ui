@@ -7,12 +7,12 @@
     <x>0</x>
     <y>0</y>
     <width>660</width>
-    <height>606</height>
+    <height>466</height>
    </rect>
   </property>
   <property name="maximumSize">
    <size>
-    <width>900</width>
+    <width>9000</width>
     <height>6000</height>
    </size>
   </property>
@@ -32,7 +32,7 @@
       <x>10</x>
       <y>10</y>
       <width>640</width>
-      <height>480</height>
+      <height>360</height>
      </rect>
     </property>
     <property name="font">
@@ -42,7 +42,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true"/>
+     <string notr="true">background-color:rgb(219, 255, 254)</string>
     </property>
     <property name="text">
      <string>ShowRect</string>
@@ -58,7 +58,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>510</y>
+      <y>390</y>
       <width>41</width>
       <height>41</height>
      </rect>
@@ -83,7 +83,7 @@ padding:2px 4px;</string>
     <property name="geometry">
      <rect>
       <x>60</x>
-      <y>510</y>
+      <y>390</y>
       <width>41</width>
       <height>41</height>
      </rect>
@@ -102,7 +102,7 @@ padding:2px 4px;</string>
     <property name="geometry">
      <rect>
       <x>110</x>
-      <y>510</y>
+      <y>390</y>
       <width>41</width>
       <height>41</height>
      </rect>
@@ -122,7 +122,7 @@ padding:2px 4px;</string>
     <property name="geometry">
      <rect>
       <x>610</x>
-      <y>510</y>
+      <y>390</y>
       <width>41</width>
       <height>41</height>
      </rect>
@@ -141,7 +141,7 @@ padding:2px 4px;</string>
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>500</y>
+      <y>380</y>
       <width>660</width>
       <height>61</height>
      </rect>
@@ -157,7 +157,7 @@ padding:2px 4px;</string>
     <property name="geometry">
      <rect>
       <x>160</x>
-      <y>510</y>
+      <y>390</y>
       <width>41</width>
       <height>41</height>
      </rect>
@@ -180,38 +180,6 @@ padding:2px 4px;</string>
    <zorder>pushButton_StartFind</zorder>
    <zorder>pushButton_Exit</zorder>
    <zorder>pushButton_StopFind</zorder>
-  </widget>
-  <widget class="QMenuBar" name="menuBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>660</width>
-     <height>26</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color:rgb(40,40,40);
-color:rgb(255, 255, 255)</string>
-   </property>
-   <widget class="QMenu" name="menu">
-    <property name="title">
-     <string>文件</string>
-    </property>
-    <addaction name="action_ConCam"/>
-    <addaction name="separator"/>
-    <addaction name="action_Setting"/>
-    <addaction name="separator"/>
-    <addaction name="actionExit"/>
-   </widget>
-   <widget class="QMenu" name="menu_3">
-    <property name="title">
-     <string>帮助</string>
-    </property>
-    <addaction name="action_About"/>
-   </widget>
-   <addaction name="menu"/>
-   <addaction name="menu_3"/>
   </widget>
   <widget class="QStatusBar" name="statusBar">
    <property name="styleSheet">

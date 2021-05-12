@@ -93,7 +93,4 @@ public:
 
 	void Init(Mat Img);
 	Mat getSpeed(Mat Img);
-
-private:
-	//double get_speed(cv::Mat& frame, vector<Point>& contour, Point2f center, float radius, vector<Point2f> prevContourCenters, double fps);
 };
