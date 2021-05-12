@@ -201,12 +201,12 @@ void csTest2::s5Difference()
 
 void csTest2::s6Threshold()
 {
-	threshold(Frame, Frame, 30, 255, THRESH_BINARY);
+	threshold(Frame, Frame, 20, 255, THRESH_BINARY);
 }
 
 void csTest2::s7Dilate()
 {
-	Mat element = getStructuringElement(MORPH_RECT, Size(50, 50));
+	Mat element = getStructuringElement(MORPH_RECT, Size(60, 60));
 	dilate(Frame, Frame, element);
 }
 
@@ -218,7 +218,7 @@ void csTest2::s8Erode()
 
 void csTest2::s9DrawCar()
 {
-	static double scalce = 0.3;
+	static double scalce = 0.3;//相机速度缩放因子
 	std::vector<KeyPoint> KpCar, KpSour;
 	Mat DpCar, DpSour,Car,Sour;
 	// 加载主画面
@@ -242,6 +242,10 @@ void csTest2::s9DrawCar()
 		Car = FrameBackup(boundRect[i]);
 		//resize(Car, Car, Size(0, 0), 2, 2);
 		detector->detectAndCompute(Car, noArray(), KpCar, DpCar);
+		//if (Car.rows <= 40 || Car.cols <= 40)
+		//{
+		//	continue;
+		//}
 		if (KpCar.size()==0)
 		{
 			continue;
@@ -258,13 +262,17 @@ void csTest2::s9DrawCar()
 
 		string CarClass = "undifine";
 
-		for (size_t i = 0; i < KNN_mTmp.size(); i++)
+		for (size_t ii = 0; ii < KNN_mTmp.size(); ii++)
 		{
-			if (KNN_mTmp[i][0].distance < 0.66 * KNN_mTmp[i][1].distance)
+			if (KNN_mTmp[ii][0].distance < 0.66 * KNN_mTmp[ii][1].distance)
 			{
-				good_matchesTmp.push_back(KNN_mTmp[i][0]);
-				sumx += Car.cols / 2 - KpCar[KNN_mTmp[i][0].queryIdx].pt.x + KpSour[KNN_mTmp[i][0].trainIdx].pt.x;
-				sumy += Car.rows / 2 - KpCar[KNN_mTmp[i][0].queryIdx].pt.y + KpSour[KNN_mTmp[i][0].trainIdx].pt.y;
+				good_matchesTmp.push_back(KNN_mTmp[ii][0]);
+				sumx += (Car.cols / 2 - KpCar[KNN_mTmp[ii][0].queryIdx].pt.x) + KpSour[KNN_mTmp[ii][0].trainIdx].pt.x;
+				//boundRect[i].x - (KpSour[KNN_mTmp[ii][0].trainIdx].pt.x - KpCar[KNN_mTmp[ii][0].queryIdx].pt.x / 2); 
+				//(Car.cols / 2 - KpCar[KNN_mTmp[i][0].queryIdx].pt.x)/2 + KpSour[KNN_mTmp[i][0].trainIdx].pt.x;
+				sumy += (Car.rows / 2 - KpCar[KNN_mTmp[ii][0].queryIdx].pt.y) + KpSour[KNN_mTmp[ii][0].trainIdx].pt.y;
+				//boundRect[i].y - (KpSour[KNN_mTmp[ii][0].trainIdx].pt.y - KpCar[KNN_mTmp[ii][0].queryIdx].pt.y / 2); 
+				//(Car.rows / 2 - KpCar[KNN_mTmp[i][0].queryIdx].pt.y)/2 + KpSour[KNN_mTmp[i][0].trainIdx].pt.y;
 			}
 		}
 		sumx = sumx / KNN_mTmp.size();

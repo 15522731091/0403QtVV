@@ -38,9 +38,9 @@ void VVideo::update()
 		if (tmpMat.empty()) {
 			return;
 		}
-		resize(tmpMat, tmpMat, Size(640, 360));
+		resize(tmpMat, tmpMat, Size(1280, 720));
 		tmpMat.copyTo(vvMat);
-		displayHUD();
+		
 
 		if (isSave)
 		{
@@ -66,6 +66,8 @@ void VVideo::update()
 			}
 
 		}
+		resize(vvMat, vvMat, Size(640, 360));
+		displayHUD();
 		Mat2QImage();
 	}
 }
